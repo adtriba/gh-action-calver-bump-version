@@ -1,0 +1,37 @@
+{
+  "name": "gh-action-calver-bump-version",
+  "version": "2021.6.10-0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adtriba/gh-action-calver-bump-version.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/adtriba/gh-action-calver-bump-version/issues"
+  },
+  "homepage": "https://github.com/adtriba/gh-action-calver-bump-version#readme",
+  "private": true,
+  "main": "index.js",
+  "scripts": {
+    "start": "node ./index.js",
+    "prettier:check": "prettier --check '*.js'",
+    "prettier": "prettier --write '*.js'",
+    "prettier:commit": "pretty-quick --staged --print-width 120"
+  },
+  "dependencies": {
+    "actions-toolkit": "^2.2.0",
+    "yargs": "^15.3.1"
+  },
+  "devDependencies": {
+    "jest": "^25.2.7",
+    "standard": "^14.3.3",
+    "prettier": "^2.3.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged --print-width 120"
+    }
+  }
+}
