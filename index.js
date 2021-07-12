@@ -1,13 +1,13 @@
-const { Toolkit } = require('actions-toolkit')
 const { execSync } = require('child_process')
+const { Toolkit } = require('actions-toolkit')
 
-// Change working directory if user defined PACKAGEJSON_DIR
+// Change directory location if needed
 if (process.env.PACKAGEJSON_DIR) {
     process.env.GITHUB_WORKSPACE = `${process.env.GITHUB_WORKSPACE}/${process.env.PACKAGEJSON_DIR}`
     process.chdir(process.env.GITHUB_WORKSPACE)
 }
 
-// Run your GitHub Action!
+// Core GH Action git logic
 Toolkit.run(async (tools) => {
     try {
         const today = new Date()
@@ -23,6 +23,7 @@ Toolkit.run(async (tools) => {
         let currentBranch = /refs\/[a-zA-Z]+\/(.*)/.exec(process.env.GITHUB_REF)[1]
         let isPullRequest = false
 
+        // Set up Git credentials
         await tools.runInWorkspace('git', [
             'config',
             'user.name',
@@ -35,6 +36,7 @@ Toolkit.run(async (tools) => {
             `"${process.env.GITHUB_EMAIL || 'gh-action-calver-bump-version@users.noreply.github.com'}"`,
         ])
 
+        // Set up branch
         if (process.env.GITHUB_HEAD_REF) {
             currentBranch = process.env.GITHUB_HEAD_REF
             isPullRequest = true
@@ -61,6 +63,7 @@ Toolkit.run(async (tools) => {
 
         await tools.runInWorkspace('git', ['checkout', currentBranch])
         await tools.runInWorkspace('npm', ['version', '--allow-same-version=true', '--git-tag-version=false', current])
+
         newVersion = execSync(`npm version --git-tag-version=false ${version}`).toString().trim().replace(/^v/, '')
 
         try {
