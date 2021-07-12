@@ -16,9 +16,10 @@ Toolkit.run(async (tools) => {
         const commitMessage = process.env['INPUT_COMMIT-MESSAGE'] || 'ci: version bump to {{version}}'
         const current = pkg.version.toString()
         const currentVersionParts = current.split('-')
-        const calVersion = `${today.getFullYear()}.${today.getMonth()}.${today.getDate()}`
+        const currentCalVersion = currentVersionParts[0]
         const patchVersion = currentVersionParts[1]
-        const bumpedPatchVersion = patchVersion ? Number(patchVersion) + 1 : 0
+        const calVersion = `${today.getFullYear()}.${today.getMonth()}.${today.getDate()}`
+        const bumpedPatchVersion = !patchVersion || (calVersion != currentCalVersion) ? 0 :  Number(patchVersion) + 1      
         const version = calVersion + '-' + bumpedPatchVersion
         let currentBranch = /refs\/[a-zA-Z]+\/(.*)/.exec(process.env.GITHUB_REF)[1]
         let isPullRequest = false
