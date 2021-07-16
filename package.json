@@ -1,6 +1,6 @@
 {
   "name": "gh-action-calver-bump-version",
-  "version": "21.6.12-0",
+  "version": "21.7.16-0",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/adtriba/gh-action-calver-bump-version.git"
