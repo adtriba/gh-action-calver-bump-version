@@ -26,15 +26,6 @@ GitHub Action for automated CalVer version bumps for NPM.
     skip-tag:  'true'
 ```
 
-#### package.json folder
-```yaml
-- name:  'Bump CalVer version'
-  uses:  'adtriba/gh-action-calver-bump-version'
-  env:
-    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    PACKAGEJSON_DIR:  'frontend'
-```
-
 #### Target branch
 ```yaml
 - name:  'Bump CalVer version'

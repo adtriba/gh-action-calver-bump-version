@@ -1,14 +1,6 @@
 const { execSync } = require('child_process')
 const { Toolkit } = require('actions-toolkit')
 
-console.log(process.env.PACKAGEJSON_DIR, process.env.INPUT_PACKAGEJSON_DIR)
-
-// Change directory location if needed
-if (process.env.PACKAGEJSON_DIR) {
-    process.env.GITHUB_WORKSPACE = `${process.env.GITHUB_WORKSPACE}/${process.env.PACKAGEJSON_DIR}`
-    process.chdir(process.env.GITHUB_WORKSPACE)
-}
-
 // Core GH Action git logic
 Toolkit.run(async (tools) => {
     try {

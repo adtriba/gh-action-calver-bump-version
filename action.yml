@@ -15,10 +15,6 @@ inputs:
     description: 'Skip Git tagging'
     default: 'false'
     required: false
-  PACKAGEJSON_DIR:
-    description: 'Custom package.json location'
-    default: ''
-    required: false
   target-branch:
     description: 'Target branch for version bump'
     default: ''
